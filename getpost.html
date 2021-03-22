@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Get 3 recent post of the Facebook Page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+   $.ajax({
+            url: 'https://graph.facebook.com/utc2hcmc/posts?access_token=EAAAAZAw4FxQIBANy4jTxHKBMMBf7a6UtTn0IgoL4EEslnJgZBZBLEqmO6gQGNDZBiI6MFmjzoGpjitnKwEIaHAWZAHxWOBjHSfrloQ7uYZCOZAFHiCofzSCdKJXGaIEUGZCB2S8fydAbl1rxTAh9FDyukL9wszxb5QQpO81ZAWEaxhtfI0CfgeesnUOcbFFPxCPgZD',
+            dataType: 'json',
+            type: 'get',
+            cache: true,
+            success: function(data){
+                var list = []
+                $(data.data).each(function(index, value) {
+                    list.push(value.message)
+                });
+                var string = "";
+                for(let i = 0; i < 3; i++)
+                {
+                    string += "<p>" + list[i] + "</p><br>"
+                    console.log(list[i])
+                }
+                $("#post").html(string)
+            }
+        });      
+    </script>
+ 
+</head>
+<body>
+    <h4>Đây là 3 bài viết gần đây của trang Fanpage “Trường Đại học Giao thông Vận tải - Phân hiệu tại TP.HCM - UTC2” </h4>
+    <p id="post"></p>
+</html>
